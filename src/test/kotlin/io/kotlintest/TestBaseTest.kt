@@ -12,6 +12,9 @@ class TestBaseTest : StringSpec() {
     init {
         "should close resources in reverse order" {
             // nothing to do here
+            "should not work here" {
+                fail("but it worked!")
+            }
         }
     }
 

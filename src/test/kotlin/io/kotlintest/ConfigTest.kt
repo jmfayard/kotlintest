@@ -4,6 +4,7 @@ import io.kotlintest.specs.WordSpec
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import io.kotlintest.Duration.Companion.milliseconds
+import io.kotlintest.matchers.be
 
 class ConfigTest : WordSpec() {
 
@@ -19,12 +20,12 @@ class ConfigTest : WordSpec() {
     "TestCase config" should {
       "support invocation parameter" {
         // this test should run 5 times
-        invocationCounter.incrementAndGet()
+        invocationCounter.incrementAndGet() should be lte 4
       }.config(invocations = 5)
 
       "support ignored" {
         fail("shouldn't run")
-      }.config(ignored = true)
+      }.config(ignored = false)
 
       System.setProperty("testTags", "bibble,fibble,foo")
 
